@@ -12,9 +12,9 @@ namespace WinFormsApp2
             InitializeComponent();
             InitializeBackgroundWorker();
             priorityTrackBar.Value = 6;
-            chipListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\ChipListNew.csv";
-            inductorListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\InductorListNew.csv";
-            capacitorListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\CapacitorListNew.csv";
+            chipListText.Text = @"C:\";
+            inductorListText.Text = @"C:\";
+            capacitorListText.Text = @"C:\";
         }
 
         /// <summary>

@@ -38,6 +38,12 @@ namespace WinFormsApp2
         /// </summary>
         public static int costWeight { get; set; }
 
+        public static string chipFile { get; set; }
+
+        public static string inductorFile { get; set; }
+
+        public static string capacitorFile { get; set; }
+
         /// <summary>
         /// Gets peak current from user requirements.
         /// </summary>
@@ -592,7 +598,7 @@ namespace WinFormsApp2
             int outCurCol = 0;
             int costCol = 0;
 
-            using (var reader = new CsvFileReader("ChipListNew.csv"))
+            using (var reader = new CsvFileReader(Requirements.chipFile))
             {
                 while (reader.ReadRow(columns))
                 {
@@ -843,7 +849,7 @@ namespace WinFormsApp2
         /// <returns><see cref="List{T}"/> of available <see cref="Inductors"/>.</returns>
         static List<Inductors> getInductorList()
         {
-            string fileName = "InductorListNewNew.csv";
+            string fileName = Requirements.inductorFile;
             List<Inductors> result = new();
 
             List<string> columns = new();
@@ -1079,7 +1085,7 @@ namespace WinFormsApp2
         /// <returns><see cref="List{T}"/> of available <see cref="Capacitors"/>.</returns>
         static List<Capacitors> getCapacitorList()
         {
-            string fileName = "CapacitorListNew.csv";
+            string fileName = Requirements.capacitorFile;
             List<Capacitors> result = new();
 
             List<string> columns = new();

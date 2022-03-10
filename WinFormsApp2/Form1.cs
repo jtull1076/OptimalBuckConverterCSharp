@@ -12,6 +12,9 @@ namespace WinFormsApp2
             InitializeComponent();
             InitializeBackgroundWorker();
             priorityTrackBar.Value = 6;
+            chipListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\ChipListNew.csv";
+            inductorListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\InductorListNew.csv";
+            capacitorListText.Text = @"C:\Users\jerem\source\repos\ME617_Project\WinFormsApp2\bin\Debug\net6.0-windows\CapacitorListNew.csv";
         }
 
         /// <summary>
@@ -247,10 +250,31 @@ namespace WinFormsApp2
             string String3 = outputV.Text;
             string String4 = OutputCurrent.Text;
             string String5 = runningTime.Text;
+            string String6 = chipListText.Text;
+            string String7 = inductorListText.Text;
+            string String8 = capacitorListText.Text;
             // ... only whitespace
             if (String1.Trim() == "" || String2.Trim() == "" || String3.Trim() == "" || String4.Trim() == "")
             {
                 MessageBox.Show("Not enough values given.");
+                return;
+            }
+            if (chipListText.Text == "" || !File.Exists(chipListText.Text))
+            {
+                MessageBox.Show("No IC list given.");
+                chipListText.Text = "";
+                return;
+            }
+            if (inductorListText.Text == "" || !File.Exists(inductorListText.Text))
+            {
+                MessageBox.Show("No inductor list given.");
+                inductorListText.Text = "";
+                return;
+            }
+            if (capacitorListText.Text == "" || !File.Exists(capacitorListText.Text))
+            {
+                MessageBox.Show("No capacitor list given.");
+                capacitorListText.Text = "";
                 return;
             }
             // ... non-numbers in input
@@ -322,8 +346,7 @@ namespace WinFormsApp2
             }
             
 
-            // initialize component lists
-            new AvailableComponents();
+            
 
             // store user requirements in Requirements class
             Requirements.minInputVoltage = float.Parse(minInputV.Text);
@@ -332,6 +355,12 @@ namespace WinFormsApp2
             Requirements.outputCurrent = float.Parse(OutputCurrent.Text);
             Requirements.performanceWeight = Math.Abs(1-priorityTrackBar.Value);
             Requirements.costWeight = Math.Abs(11-priorityTrackBar.Value);
+            Requirements.chipFile = chipListText.Text;
+            Requirements.inductorFile = inductorListText.Text;
+            Requirements.capacitorFile = capacitorListText.Text;
+
+            // initialize component lists
+            new AvailableComponents();
 
             // setup based on MCTS or DFS
             if (mctsRadio.Checked)
@@ -823,7 +852,7 @@ namespace WinFormsApp2
             if (GlobalMCTS.solution != null)
             {
                 MessageBox.Show("Number of designs evaluated in exhaustive search: " + iter.ToString("N0") + "\n" + 
-                                "MCTS solution was better than or equal to " + solsWorseThanMCTS.ToString("N0") + " solutions, which places it in the " + ((float)(100F * solsWorseThanMCTS / iter)).ToString("N2") + "th percentile " +
+                                "MCTS solution was better than or equal to " + solsWorseThanMCTS.ToString("N0") + " solutions, which places it in the " + ((float)(100F * solsWorseThanMCTS / iter)).ToString("N6") + "th percentile " +
                                 "while only searching " + ((float)(100F * GlobalMCTS.iterCount / iter)).ToString("N2") + "% of the space.");
 
             }

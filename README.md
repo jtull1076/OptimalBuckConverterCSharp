@@ -3,7 +3,7 @@
 ## Overview
 This is a Windows Forms application that uses Monte Carlo tree search to find the optimal components for a basic buck converter design. It includes an Exhaustive Search (depth-first search, since the tree isn't very deep) option to show the performance of the MCTS result, as well as a priority slider for Cost vs. Performance. 
 
-**The parts can be downloaded as a .csv file from Digi-Key; they need to be placed into the \WinFormsApp2\bin\Debug\net6.0-windows folder and the names changed to "[Chip/Capacitor/Inductor]List.csv" to be read correctly. 
+**The parts can be downloaded as a .csv file from Digi-Key; the form handles parsing the different headers, but they must be from Digi-Key and unchanged. 
 
 ## How-To
 1. Retrieve a data table (.csv file type) from Digi-key for buck converter IC's (preferably fixed, or it will ignore programmability), inductors, and capacitors. Place them in the folder mention above. 

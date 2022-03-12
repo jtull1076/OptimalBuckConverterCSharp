@@ -13,7 +13,6 @@ This is a Windows Forms application that uses Monte Carlo tree search to find th
 5. If MCTS has been performed, the exhaustive search will give a pop-up with more info on how good the MCTS solution was (if the inputs didn't change). 
 
 ## To-Do
-- [ ] Make a file browser for table uploads
 - [ ] Add functionality for other circuit types
 - [ ] General code clean-up
 
